@@ -1,11 +1,11 @@
 package com.akrasnoyarov.movieandroidacademy
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.akrasnoyarov.movieandroidacademy.fragments.MovieDetailsFragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 
-class MainActivity : SingleFragmentActivity() {
-    override fun createFragment() = MovieDetailsFragment.newInstance()
+abstract class SingleFragmentActivity: AppCompatActivity() {
+    abstract fun createFragment(): Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,5 +17,4 @@ class MainActivity : SingleFragmentActivity() {
                 .commit()
         }
     }
-
 }
