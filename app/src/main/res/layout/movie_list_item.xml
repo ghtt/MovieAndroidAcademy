@@ -6,12 +6,13 @@
     android:layout_height="wrap_content"
     android:background="@color/background"
     android:backgroundTint="@color/purple_500"
-    android:backgroundTintMode="multiply">
+    android:backgroundTintMode="multiply"
+    android:layout_margin="8dp">
 
     <ImageView
-        android:id="@+id/movie_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:id="@+id/movie_list_image_view"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
         android:contentDescription="@string/avengers_title"
         android:scaleType="centerCrop"
         android:src="@drawable/avengers_movie"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/raiting_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
@@ -42,10 +44,11 @@
         android:textFontWeight="900"
         android:textSize="14dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/movie_image_view" />
+        app:layout_constraintRight_toRightOf="@+id/movie_list_image_view"
+        app:layout_constraintTop_toBottomOf="@id/movie_list_image_view" />
 
     <TextView
-        android:id="@+id/mins_text_view"
+        android:id="@+id/duration_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -78,7 +81,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/background"
         android:src="@drawable/ic_star_rate_24"
-        app:layout_constraintBottom_toBottomOf="@id/movie_image_view"
+        app:layout_constraintBottom_toBottomOf="@id/movie_list_image_view"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <ImageButton
@@ -89,7 +92,7 @@
         android:layout_marginTop="4dp"
         android:background="@color/background"
         android:src="@drawable/ic_star_rate_24"
-        app:layout_constraintBottom_toBottomOf="@id/movie_image_view"
+        app:layout_constraintBottom_toBottomOf="@id/movie_list_image_view"
         app:layout_constraintLeft_toRightOf="@id/rate_star_0" />
 
     <ImageButton
@@ -100,7 +103,7 @@
         android:layout_marginTop="4dp"
         android:background="@color/background"
         android:src="@drawable/ic_star_rate_24"
-        app:layout_constraintBottom_toBottomOf="@id/movie_image_view"
+        app:layout_constraintBottom_toBottomOf="@id/movie_list_image_view"
         app:layout_constraintLeft_toRightOf="@id/rate_star_1" />
 
     <ImageButton
@@ -111,7 +114,7 @@
         android:layout_marginTop="4dp"
         android:background="@color/background"
         android:src="@drawable/ic_star_rate_24"
-        app:layout_constraintBottom_toBottomOf="@id/movie_image_view"
+        app:layout_constraintBottom_toBottomOf="@id/movie_list_image_view"
         app:layout_constraintLeft_toRightOf="@id/rate_star_2" />
 
     <ImageButton
@@ -122,7 +125,7 @@
         android:layout_marginTop="4dp"
         android:background="@color/background"
         android:src="@drawable/ic_star_rate_24"
-        app:layout_constraintBottom_toBottomOf="@id/movie_image_view"
+        app:layout_constraintBottom_toBottomOf="@id/movie_list_image_view"
         app:layout_constraintLeft_toRightOf="@id/rate_star_3" />
 
     <TextView

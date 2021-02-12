@@ -7,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.akrasnoyarov.movieandroidacademy.R
-import com.akrasnoyarov.movieandroidacademy.data.Actor
+import com.akrasnoyarov.movieandroidacademy.model.Actor
+import com.bumptech.glide.Glide
 
 class ActorViewAdapter(private val actorsList: List<Actor>) :
     RecyclerView.Adapter<ActorViewAdapter.ActorViewHolder>() {
@@ -27,11 +28,13 @@ class ActorViewAdapter(private val actorsList: List<Actor>) :
     class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(actor: Actor) {
             itemView.run {
-                findViewById<ImageView>(R.id.actor_image_view).apply {
-                    setImageResource(actor.image)
-                }
+                Glide.with(findViewById<ImageView>(R.id.actor_image_view))
+                    .load(actor.imageUrl)
+                    .centerCrop()
+                    .into(findViewById<ImageView>(R.id.actor_image_view))
+
                 findViewById<TextView>(R.id.actor_name_text_view).apply {
-                    setText(actor.name)
+                    text = actor.name
                 }
             }
         }
