@@ -32,14 +32,14 @@ class MovieListFragment : Fragment() {
         return view
     }
 
-        override fun onAttach(context: Context) {
-            super.onAttach(context)
-            if (context is Callbacks) {
-                callback = context
-            }
-        }
-
-        companion object {
-            fun newInstance() = MovieListFragment()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is Callbacks) {
+            callback = context
         }
     }
+
+    companion object {
+        fun newInstance() = MovieListFragment()
+    }
+}
