@@ -39,6 +39,7 @@ class MovieViewAdapter(var listener: OnMovieClickListener?) :
 
     fun setMoviesList(movies: List<Movie>) {
         this.movies = movies
+        notifyDataSetChanged()
     }
 
     inner class MovieViewHolder(itemView: View, listener: OnMovieClickListener?) :
