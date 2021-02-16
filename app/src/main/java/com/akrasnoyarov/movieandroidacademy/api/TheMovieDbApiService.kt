@@ -11,7 +11,7 @@ interface TheMovieDbApiService {
     suspend fun getUpcomingMovies(): UpcomingMovieResponse
 
     @GET("movie/{movie_id}")
-    suspend fun getMovieById(@Path("movie_id") id: Int): Movie
+    suspend fun getMovieById(@Path("movie_id") id: Int): MovieDb
 
     @GET("person/{person_id}")
     suspend fun getPersonById(@Path("person_id") id: Int): Person

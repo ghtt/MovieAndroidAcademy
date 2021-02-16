@@ -15,7 +15,7 @@ private const val API_KEY_NAME = "api_key"
 private const val API_KEY = "eb4f1d49f287c92ec708608992119290"
 
 object RetrofitModule {
-
+    lateinit var imageUrl: String
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(
             HttpLoggingInterceptor().apply {

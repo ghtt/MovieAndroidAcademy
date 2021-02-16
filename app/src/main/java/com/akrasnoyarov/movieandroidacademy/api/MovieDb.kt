@@ -1,8 +1,9 @@
 package com.akrasnoyarov.movieandroidacademy.api
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class Movie(
+data class MovieDb(
 
 	@field:SerializedName("original_language")
 	val originalLanguage: String? = null,
@@ -78,7 +79,7 @@ data class Movie(
 
 	@field:SerializedName("status")
 	val status: String? = null
-)
+) : Serializable
 
 data class ProductionCompaniesItem(
 

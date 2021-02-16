@@ -5,31 +5,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akrasnoyarov.movieandroidacademy.R
 import com.akrasnoyarov.movieandroidacademy.adapters.MovieViewAdapter
-import com.akrasnoyarov.movieandroidacademy.data.JsonMovieRepository
 import com.akrasnoyarov.movieandroidacademy.data.TheMovieDbRepository
 import com.akrasnoyarov.movieandroidacademy.viewmodels.MovieViewModel
+import com.akrasnoyarov.movieandroidacademy.viewmodels.ViewModelFactory
 import kotlinx.coroutines.*
 
 class MovieListFragment : Fragment() {
     private var moviesRecyclerView: RecyclerView? = null
     private var moviesAdapter: MovieViewAdapter? = null
     private var scope: CoroutineScope = CoroutineScope(Dispatchers.Main)
-    private var repository: JsonMovieRepository? = null
     private var movieDbRepository: TheMovieDbRepository? = null
     private var listener: MovieViewAdapter.OnMovieClickListener? = null
-    private val viewModel: MovieViewModel by lazy { MovieViewModel(movieDbRepository!!) }
+    private var progressBar: ProgressBar? = null
+    private val viewModel by lazy { ViewModelFactory.getInstance(movieDbRepository!!) }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is MovieViewAdapter.OnMovieClickListener) {
             listener = context
         }
-//        repository = JsonMovieRepository(context)
         movieDbRepository = TheMovieDbRepository()
     }
 
@@ -44,6 +45,7 @@ class MovieListFragment : Fragment() {
         initAdapter()
 
         viewModel.movies.observe(viewLifecycleOwner) { moviesAdapter?.setMoviesList(it) }
+        viewModel.loading.observe(viewLifecycleOwner) { progressBar?.isVisible = it }
 
         return view
     }
@@ -73,6 +75,7 @@ class MovieListFragment : Fragment() {
 
     private fun initViews(view: View?) {
         moviesRecyclerView = view?.findViewById(R.id.movies_recycler_view)
+        progressBar = view?.findViewById(R.id.progress_bar)
     }
 
     companion object {
