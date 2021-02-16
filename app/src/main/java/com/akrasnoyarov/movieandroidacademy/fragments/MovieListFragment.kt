@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.akrasnoyarov.movieandroidacademy.R
 import com.akrasnoyarov.movieandroidacademy.adapters.MovieViewAdapter
 import com.akrasnoyarov.movieandroidacademy.data.JsonMovieRepository
+import com.akrasnoyarov.movieandroidacademy.data.TheMovieDbRepository
 import com.akrasnoyarov.movieandroidacademy.viewmodels.MovieViewModel
 import kotlinx.coroutines.*
 
@@ -19,15 +20,17 @@ class MovieListFragment : Fragment() {
     private var moviesAdapter: MovieViewAdapter? = null
     private var scope: CoroutineScope = CoroutineScope(Dispatchers.Main)
     private var repository: JsonMovieRepository? = null
+    private var movieDbRepository: TheMovieDbRepository? = null
     private var listener: MovieViewAdapter.OnMovieClickListener? = null
-    private val viewModel: MovieViewModel by lazy { MovieViewModel(repository!!) }
+    private val viewModel: MovieViewModel by lazy { MovieViewModel(movieDbRepository!!) }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is MovieViewAdapter.OnMovieClickListener) {
             listener = context
         }
-        repository = JsonMovieRepository(context)
+//        repository = JsonMovieRepository(context)
+        movieDbRepository = TheMovieDbRepository()
     }
 
     override fun onCreateView(
