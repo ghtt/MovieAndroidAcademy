@@ -27,16 +27,22 @@ class ActorViewAdapter(private val actorsList: List<Actor>) :
 
     class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(actor: Actor) {
-            itemView.run {
-                Glide.with(findViewById<ImageView>(R.id.actor_image_view))
-                    .load(actor.imageUrl)
-                    .centerCrop()
-                    .into(findViewById<ImageView>(R.id.actor_image_view))
+            setActorImage(actor)
+            setActorName(actor)
+        }
 
-                findViewById<TextView>(R.id.actor_name_text_view).apply {
-                    text = actor.name
-                }
+        private fun setActorName(actor: Actor) {
+            itemView.findViewById<TextView>(R.id.actor_name_text_view).apply {
+                text = actor.name
             }
+        }
+
+        private fun setActorImage(actor: Actor) {
+            val actorImageView = itemView.findViewById<ImageView>(R.id.actor_image_view)
+            Glide.with(actorImageView)
+                .load(actor.imageUrl)
+                .centerCrop()
+                .into(actorImageView)
         }
     }
 }

@@ -48,43 +48,60 @@ class MovieViewAdapter(var listener: OnMovieClickListener?) :
     inner class MovieViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         fun onBind(movie: ResultsItem?) {
-            itemView.run {
-                val imageView = findViewById<ImageView>(R.id.movie_list_image_view).apply {
-                    setOnClickListener {
-                        listener?.onMovieItemClicked(movie?.id!!)
-                    }
-                }
-                Glide.with(itemView.context)
-                    .load(RetrofitModule.imageUrl.plus(movie?.posterPath!!))
-                    .centerCrop()
-                    .into(imageView)
+            setMovieImage(movie)
+            setMovieRating(movie)
+            setMovieTitle(movie)
+            setMovieDuration(movie)
+            setMovieGenres(movie)
+            setMovieReviewCount(movie)
+        }
 
-                findViewById<TextView>(R.id.raiting_text_view).apply {
-//                    text = movie?.pgAge.toString()
-                }
+        private fun setMovieReviewCount(movie: ResultsItem?) {
+            itemView.findViewById<TextView>(R.id.review_count_text_view).apply {
+                text = movie?.voteCount.toString()
+            }
+        }
 
-                findViewById<TextView>(R.id.movie_title_text_view).apply {
-                    text = movie.title.toString()
-                }
-
-                findViewById<TextView>(R.id.duration_text_view).apply {
-//                    text = movie.
-                }
-
-//                findViewById<TextView>(R.id.movie_genre_text_view).apply {
-//                    text = movie.genreIds.let {
-//                        var genreString = ""
-//                        it?.forEach { item ->
-//                            genreString = genreString.plus(item?.name).plus(" ")
-//                        }
-//                        genreString
+        private fun setMovieGenres(movie: ResultsItem?) {
+//            itemView.findViewById<TextView>(R.id.movie_genre_text_view).apply {
+//                text = movie.genreIds.let {
+//                    var genreString = ""
+//                    it?.forEach { item ->
+//                        genreString = genreString.plus(item?.name).plus(" ")
 //                    }
+//                    genreString
 //                }
+//            }
+        }
 
-                findViewById<TextView>(R.id.review_count_text_view).apply {
-                    text = movie.voteCount.toString()
+        private fun setMovieDuration(movie: ResultsItem?) {
+            itemView.findViewById<TextView>(R.id.duration_text_view).apply {
+                //text = movie.
+            }
+        }
+
+        private fun setMovieTitle(movie: ResultsItem?) {
+            itemView.findViewById<TextView>(R.id.movie_title_text_view).apply {
+                text = movie?.title.toString()
+            }
+        }
+
+        private fun setMovieRating(movie: ResultsItem?) {
+            itemView.findViewById<TextView>(R.id.raiting_text_view).apply {
+                //text = movie?.pgAge.toString()
+            }
+        }
+
+        private fun setMovieImage(movie: ResultsItem?) {
+            val imageView = itemView.findViewById<ImageView>(R.id.movie_list_image_view).apply {
+                setOnClickListener {
+                    listener?.onMovieItemClicked(movie?.id!!)
                 }
             }
+            Glide.with(itemView.context)
+                .load(RetrofitModule.imageUrl.plus(movie?.posterPath!!))
+                .centerCrop()
+                .into(imageView)
         }
     }
 }

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.akrasnoyarov.movieandroidacademy.R
 import com.akrasnoyarov.movieandroidacademy.adapters.MovieViewAdapter
 import com.akrasnoyarov.movieandroidacademy.data.TheMovieDbRepository
-import com.akrasnoyarov.movieandroidacademy.viewmodels.MovieViewModel
 import com.akrasnoyarov.movieandroidacademy.viewmodels.ViewModelFactory
 import kotlinx.coroutines.*
 
