@@ -79,9 +79,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
+            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
-            tools:src="@drawable/ic_star_rate_24" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
 
         <ImageButton
             android:id="@+id/rate_star_1"
@@ -90,9 +90,9 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
+            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toRightOf="@id/rate_star_0"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
-            tools:src="@drawable/ic_star_rate_24" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
 
         <ImageButton
             android:id="@+id/rate_star_2"
@@ -101,9 +101,9 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
+            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toRightOf="@id/rate_star_1"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
-            tools:src="@drawable/ic_star_rate_24" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
 
         <ImageButton
             android:id="@+id/rate_star_3"
@@ -112,9 +112,9 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
+            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toRightOf="@id/rate_star_2"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
-            tools:src="@drawable/ic_star_rate_24" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
 
         <ImageButton
             android:id="@+id/rate_star_4"
@@ -123,9 +123,9 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
+            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toRightOf="@id/rate_star_3"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
-            tools:src="@drawable/ic_star_rate_24" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
 
         <TextView
             android:id="@+id/review_count_text_view"

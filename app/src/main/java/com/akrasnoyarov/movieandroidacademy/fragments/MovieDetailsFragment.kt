@@ -55,31 +55,17 @@ class MovieDetailsFragment : Fragment() {
                 .load(RetrofitModule.imageUrl.plus(it.posterPath!!))
                 .into(movieImageView!!)
 
-            movieRatingTextView.apply {
-//                text = movie.pgAge.toString()
-            }
-
-            movieTitleTextView.apply {
-                this?.text = it.title
-            }
-
-            movieGenreTextView.apply {
-                this?.text = it.genres.let {
-                    var genreString = ""
-                    it?.forEach { item ->
-                        genreString = genreString.plus(item?.name).plus(" ")
-                    }
-                    genreString
+//            movieRatingTextView?.text = movie.pgAge.toString()
+            movieTitleTextView?.text = it.title
+            movieGenreTextView?.text = it.genres.let {
+                var genreString = ""
+                it?.forEach { item ->
+                    genreString = "$genreString ${item?.name}"
                 }
+                genreString
             }
-
-            movieReviewCountTextView.apply {
-                this?.text = it.voteCount.toString()
-            }
-
-            movieStoryLineTextView.apply {
-                this?.text = it.overview
-            }
+            movieReviewCountTextView?.text = it.voteCount.toString()
+            movieStoryLineTextView?.text = it.overview
         }
         return view
     }

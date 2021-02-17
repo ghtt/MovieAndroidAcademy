@@ -27,8 +27,7 @@ class TheMovieDbRepository : MovieRepository {
     suspend fun setImageUrl() {
         withContext(Dispatchers.IO) {
             val configuration = RetrofitModule.moviesApi.getConfiguration().images
-            RetrofitModule.imageUrl =
-                configuration?.secureBaseUrl!!.plus("/").plus("original").plus("/")
+            RetrofitModule.imageUrl = "${configuration?.secureBaseUrl}/original/"
         }
     }
 }
