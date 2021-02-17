@@ -6,10 +6,20 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background">
+
+        <ProgressBar
+            android:id="@+id/details_progress_bar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/movie_image_view"
@@ -17,10 +27,10 @@
             android:layout_height="400dp"
             android:contentDescription="@string/avengers_title"
             android:scaleType="centerCrop"
-            android:src="@drawable/orig"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/orig" />
 
         <TextView
             android:id="@+id/rating_text_view"
@@ -28,11 +38,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="12dp"
-            android:text="13+"
             android:textColor="@color/title"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/movie_title_text_view"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:text="13+" />
 
         <TextView
             android:id="@+id/movie_title_text_view"
@@ -42,13 +52,13 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="40dp"
             android:lineHeight="40dp"
-            android:text="@string/avengers_title"
             android:textColor="@color/title"
             android:textFontWeight="900"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="@id/movie_image_view"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_image_view" />
+            app:layout_constraintTop_toBottomOf="@id/movie_image_view"
+            tools:text="@string/avengers_title" />
 
         <TextView
             android:id="@+id/movie_genre_text_view"
@@ -56,11 +66,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
-            android:text="Action, Adventure, Fantasy"
             android:textColor="@color/genre"
             android:textFontWeight="300"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_title_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/movie_title_text_view"
+            tools:text="Action, Adventure, Fantasy" />
 
         <ImageButton
             android:id="@+id/rate_star_0"
@@ -69,9 +79,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
-            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
+            tools:src="@drawable/ic_star_rate_24" />
 
         <ImageButton
             android:id="@+id/rate_star_1"
@@ -80,9 +90,9 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
-            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toRightOf="@id/rate_star_0"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
+            tools:src="@drawable/ic_star_rate_24" />
 
         <ImageButton
             android:id="@+id/rate_star_2"
@@ -91,9 +101,9 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
-            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toRightOf="@id/rate_star_1"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
+            tools:src="@drawable/ic_star_rate_24" />
 
         <ImageButton
             android:id="@+id/rate_star_3"
@@ -102,9 +112,9 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
-            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toRightOf="@id/rate_star_2"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
+            tools:src="@drawable/ic_star_rate_24" />
 
         <ImageButton
             android:id="@+id/rate_star_4"
@@ -113,21 +123,21 @@
             android:layout_marginLeft="3dp"
             android:layout_marginTop="8dp"
             android:background="@color/background"
-            android:src="@drawable/ic_star_rate_24"
             app:layout_constraintLeft_toRightOf="@id/rate_star_3"
-            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/movie_genre_text_view"
+            tools:src="@drawable/ic_star_rate_24" />
 
         <TextView
             android:id="@+id/review_count_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
-            android:text="125 Reviews"
             android:textColor="@color/review"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/rate_star_4"
             app:layout_constraintLeft_toRightOf="@id/rate_star_4"
-            app:layout_constraintTop_toTopOf="@id/rate_star_4" />
+            app:layout_constraintTop_toTopOf="@id/rate_star_4"
+            tools:text="125 Reviews" />
 
         <TextView
             android:id="@+id/storyline_text_view"
@@ -135,10 +145,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
-            android:text="Storyline"
             android:textColor="@color/title"
             android:textSize="14dp"
-            app:layout_constraintTop_toBottomOf="@id/review_count_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/review_count_text_view"
+            tools:text="Storyline" />
 
         <TextView
             android:id="@+id/storylineText"
@@ -146,10 +156,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
-            android:text="@string/avengers_storyline_text"
             android:textColor="@color/white"
             android:textSize="14dp"
-            app:layout_constraintTop_toBottomOf="@id/storyline_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/storyline_text_view"
+            tools:text="@string/avengers_storyline_text" />
 
         <TextView
             android:id="@+id/cast_title_text_view"
@@ -157,11 +167,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
-            android:text="Cast"
             android:textColor="@color/title"
             android:textSize="14dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/storylineText" />
+            app:layout_constraintTop_toBottomOf="@id/storylineText"
+            tools:text="Cast" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/actors_recycler_view"

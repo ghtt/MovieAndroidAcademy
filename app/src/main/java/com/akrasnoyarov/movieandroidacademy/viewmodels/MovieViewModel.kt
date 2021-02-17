@@ -31,7 +31,9 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
 
     fun loadMovieById(id: Int) {
         viewModelScope.launch {
+            _loading.postValue(true)
             _movie.value = repository.loadMovie(id)
+            _loading.postValue(false)
         }
     }
 }
