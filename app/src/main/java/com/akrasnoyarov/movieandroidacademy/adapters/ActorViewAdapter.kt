@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.akrasnoyarov.movieandroidacademy.R
-import com.akrasnoyarov.movieandroidacademy.model.Actor
+import com.akrasnoyarov.movieandroidacademy.models.Actor
 import com.bumptech.glide.Glide
 
 class ActorViewAdapter(private val actorsList: List<Actor>) :

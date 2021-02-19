@@ -1,4 +1,4 @@
-package com.akrasnoyarov.movieandroidacademy.model
+package com.akrasnoyarov.movieandroidacademy.models
 
 import java.io.Serializable
 

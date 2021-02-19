@@ -30,7 +30,7 @@ class MovieListFragment : Fragment() {
         if (context is MovieViewAdapter.OnMovieClickListener) {
             listener = context
         }
-        movieDbRepository = TheMovieDbRepository()
+        movieDbRepository = TheMovieDbRepository(context)
     }
 
     override fun onCreateView(
@@ -43,7 +43,7 @@ class MovieListFragment : Fragment() {
         initViews(view)
         initAdapter()
 
-        viewModel.movies.observe(viewLifecycleOwner) { moviesAdapter?.setMoviesList(it) }
+        viewModel.movies.observe(viewLifecycleOwner) { moviesAdapter?.submitList(it) }
         viewModel.loading.observe(viewLifecycleOwner) { progressBar?.isVisible = it }
 
         return view

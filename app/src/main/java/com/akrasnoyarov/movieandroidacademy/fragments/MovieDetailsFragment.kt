@@ -1,5 +1,6 @@
 package com.akrasnoyarov.movieandroidacademy.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +14,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.akrasnoyarov.movieandroidacademy.R
 import com.akrasnoyarov.movieandroidacademy.api.RetrofitModule
+import com.akrasnoyarov.movieandroidacademy.data.MovieRepository
 import com.akrasnoyarov.movieandroidacademy.data.TheMovieDbRepository
 import com.akrasnoyarov.movieandroidacademy.viewmodels.ViewModelFactory
 import com.bumptech.glide.Glide
 
 class MovieDetailsFragment : Fragment() {
     private var actorsRecyclerView: RecyclerView? = null
-    private var repository = TheMovieDbRepository()
-    private val viewModel by lazy { ViewModelFactory.getInstance(repository) }
+    private var repository: MovieRepository? = null
+    private val viewModel by lazy { ViewModelFactory.getInstance(repository!!) }
     private var progressBar: ProgressBar? = null
     private var movieImageView: ImageView? = null
     private var movieTitleTextView: TextView? = null
@@ -29,6 +31,10 @@ class MovieDetailsFragment : Fragment() {
     private var movieReviewCountTextView: TextView? = null
     private var movieStoryLineTextView: TextView? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        repository = TheMovieDbRepository(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

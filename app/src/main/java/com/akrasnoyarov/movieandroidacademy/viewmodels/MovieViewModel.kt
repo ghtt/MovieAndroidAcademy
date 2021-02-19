@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.akrasnoyarov.movieandroidacademy.api.MovieDb
 import com.akrasnoyarov.movieandroidacademy.api.ResultsItem
 import com.akrasnoyarov.movieandroidacademy.data.MovieRepository
-import com.akrasnoyarov.movieandroidacademy.model.Movie
 import kotlinx.coroutines.launch
 
 

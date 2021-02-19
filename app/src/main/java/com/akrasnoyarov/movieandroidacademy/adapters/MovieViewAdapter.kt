@@ -1,28 +1,21 @@
 package com.akrasnoyarov.movieandroidacademy.adapters
 
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.akrasnoyarov.movieandroidacademy.R
-import com.akrasnoyarov.movieandroidacademy.api.MovieDb
 import com.akrasnoyarov.movieandroidacademy.api.ResultsItem
 import com.akrasnoyarov.movieandroidacademy.api.RetrofitModule
-import com.akrasnoyarov.movieandroidacademy.model.Actor
-import com.akrasnoyarov.movieandroidacademy.model.Movie
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 
-class MovieViewAdapter(var listener: OnMovieClickListener?) :
-    RecyclerView.Adapter<MovieViewAdapter.MovieViewHolder>() {
-    private var movies: List<ResultsItem?>? = null
+class MovieViewAdapter(
+    private var listener: OnMovieClickListener?
+) : ListAdapter<ResultsItem, MovieViewAdapter.MovieViewHolder>(MoviesCallback) {
 
     interface OnMovieClickListener {
         fun onMovieItemClicked(movieId: Int)
@@ -35,20 +28,13 @@ class MovieViewAdapter(var listener: OnMovieClickListener?) :
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.onBind(movies?.get(position))
+        holder.onBind(getItem(position), listener)
     }
 
-    override fun getItemCount(): Int = movies?.size ?: 0
-
-    fun setMoviesList(movies: List<ResultsItem?>) {
-        this.movies = movies
-        notifyDataSetChanged()
-    }
-
-    inner class MovieViewHolder(itemView: View) :
+    class MovieViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        fun onBind(movie: ResultsItem?) {
-            setMovieImage(movie)
+        fun onBind(movie: ResultsItem?, listener: OnMovieClickListener?) {
+            setMovieImage(movie, listener)
             setMovieRating(movie)
             setMovieTitle(movie)
             setMovieDuration(movie)
@@ -92,7 +78,7 @@ class MovieViewAdapter(var listener: OnMovieClickListener?) :
             }
         }
 
-        private fun setMovieImage(movie: ResultsItem?) {
+        private fun setMovieImage(movie: ResultsItem?, listener: OnMovieClickListener?) {
             val imageView = itemView.findViewById<ImageView>(R.id.movie_list_image_view).apply {
                 setOnClickListener {
                     listener?.onMovieItemClicked(movie?.id!!)
@@ -101,7 +87,18 @@ class MovieViewAdapter(var listener: OnMovieClickListener?) :
             Glide.with(itemView.context)
                 .load(RetrofitModule.imageUrl.plus(movie?.posterPath!!))
                 .centerCrop()
+                .fitCenter()
                 .into(imageView)
+        }
+    }
+
+    companion object {
+        private var MoviesCallback = object : DiffUtil.ItemCallback<ResultsItem>() {
+            override fun areItemsTheSame(oldItem: ResultsItem, newItem: ResultsItem): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: ResultsItem, newItem: ResultsItem): Boolean =
+                oldItem == newItem
         }
     }
 }
