@@ -58,29 +58,30 @@ class TheMovieDbRepository(context: Context) : MovieRepository {
         }
     }
 
-    private fun convertFromApiToDb(movieFromApi: ResultsItem): Movie = Movie(
-        id = movieFromApi.id,
-        title = movieFromApi.title,
-        imageUrl = movieFromApi.posterPath,
-        rating = null,
-        duration = null,
-        reviewCount = movieFromApi.voteCount
-    )
+    companion object {
+        fun convertFromApiToDb(movieFromApi: ResultsItem): Movie = Movie(
+            id = movieFromApi.id,
+            title = movieFromApi.title,
+            imageUrl = movieFromApi.posterPath,
+            rating = null,
+            duration = null,
+            reviewCount = movieFromApi.voteCount
+        )
 
+        private fun convertFromDbToApi(movieFromDb: Movie): ResultsItem = ResultsItem(
+            id = movieFromDb.id,
+            title = movieFromDb.title,
+            posterPath = movieFromDb.imageUrl,
+            voteCount = movieFromDb.reviewCount
+        )
 
-    private fun convertFromDbToApi(movieFromDb: Movie): ResultsItem = ResultsItem(
-        id = movieFromDb.id,
-        title = movieFromDb.title,
-        posterPath = movieFromDb.imageUrl,
-        voteCount = movieFromDb.reviewCount
-    )
-
-    private fun convertFromDbToMovieDb(movieFromDb: Movie): MovieDb = MovieDb(
-        id = movieFromDb.id,
-        title = movieFromDb.title,
-        posterPath = movieFromDb.imageUrl,
-        voteCount = movieFromDb.reviewCount,
-        overview = movieFromDb.overview
-    )
+        private fun convertFromDbToMovieDb(movieFromDb: Movie): MovieDb = MovieDb(
+            id = movieFromDb.id,
+            title = movieFromDb.title,
+            posterPath = movieFromDb.imageUrl,
+            voteCount = movieFromDb.reviewCount,
+            overview = movieFromDb.overview
+        )
+    }
 
 }

@@ -10,11 +10,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.*
+import com.akrasnoyarov.movieandroidacademy.MovieWorker
 import com.akrasnoyarov.movieandroidacademy.R
 import com.akrasnoyarov.movieandroidacademy.adapters.MovieViewAdapter
 import com.akrasnoyarov.movieandroidacademy.data.TheMovieDbRepository
 import com.akrasnoyarov.movieandroidacademy.viewmodels.ViewModelFactory
 import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 
 class MovieListFragment : Fragment() {
     private var moviesRecyclerView: RecyclerView? = null
@@ -51,7 +54,18 @@ class MovieListFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.loadMovies()
+
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .setRequiresCharging(true)
+            .build()
+        val request = PeriodicWorkRequestBuilder<MovieWorker>(8, TimeUnit.HOURS)
+            .setConstraints(constraints)
+            .addTag(REQUEST_TAG)
+            .build()
+
+        val workManager = WorkManager.getInstance(requireContext())
+        workManager.enqueue(request)
     }
 
     override fun onDestroyView() {
@@ -78,6 +92,7 @@ class MovieListFragment : Fragment() {
     }
 
     companion object {
+        private const val REQUEST_TAG = "update cache"
         fun newInstance() = MovieListFragment()
     }
 }

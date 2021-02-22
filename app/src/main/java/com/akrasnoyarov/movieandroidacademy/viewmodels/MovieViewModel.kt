@@ -20,6 +20,10 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     private var _movie = MutableLiveData<MovieDb>()
     val movie: LiveData<MovieDb> get() = _movie
 
+    init {
+        loadMovies()
+    }
+
     fun loadMovies() {
         viewModelScope.launch {
             _loading.postValue(true)
